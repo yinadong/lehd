@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LEHD Data Exploration Tool</title>
+   <link rel="stylesheet" type="text/css" href="./style/style.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+   <link rel="stylesheet" href="lib/leaflet-search.css" />
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+    <script src="lib/jquery-1.11.3.min.js"></script>
+    <script src="lib/leaflet-search.js"></script>
+    <script src="lib/leaflet-heat.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div div class="loader">
+     <div class ="l_Progress"></div>
+  </div>
+  <div id="mapContainer"></div> 
+  <!-- legend section --> 
+  <div class ="legend">
+     <div class = "toggle-area">
+             <div id="year-button">2015 </div>
+             <div class ="toggle">
+                <div id="bos-button"><a href="./boston.html">BG</a></div> 
+                <div id="ma-button"><a href="./index.html">TOWN</a></div> 
+                <div id="links-button"><a href="./tree_node.html">LINKS</a></div>              
+             </div> 
+     </div> 
+    <!-- mainpanel section --> 
+    <div class = "mainpanel-area">
+        <div class = "title-section">
+          
+           <!-- main title section -->
+           <div class="title">
+              <div class="sub-title">Workforce Dynamic</div>
+              <div class="main-title">
+                <div class="in">In </div>
+                <div class="location-button" id="location-button">Boston</div>
+                <div class="type">Workflow</div> 
+             </div>
+             <div class ="text_line"></div>
+            </div> 
+
+             <!-- infor + filter section -->
+            <div class="filter_section" id="filter_container">
+             
+
+            <!-- filter icon section -->
+            <div class="filter-icon">
+               <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style=" background-color: transparent; outline: none; border: none; padding: 0; margin:0;">
+                   <img id="filter_img" src="./images/filter-2-01.png" style="width: 25px; height: 25px;">
+               </button>
+              <!-- Modal -->
+               <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+               <!-- Modal content-->
+                 <div class="modal-content" style="background-color:#333";>
+                   <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="font-family:'Public Sans Bold', sans-serif;font-size: 14px; color:grey;" >Filter the pattern </h4>
+                        <div class="filter_sub"> </div>
+                   </div>
+                  <div class="modal-body" >
+                      <div class="f_title" style="font-family:'Public Sans Bold', sans-serif;font-size: 12px; color:grey; ">Age Group
+                      </div>
+                      <div class="row">
+                         <div class="col-sm-3">
+                           <input type="checkbox" id="sa01" value="sa01" name="age1">
+                           <label for="Age1">29 or younger</label>
+                         </div>
+                         <div class="col-sm-3">
+                           <input type="checkbox" id="sa02" value="sa02" name="age2">
+                           <label for="Age2">30 to 54</label>
+                        </div>
+                        <div class="col-sm-3">
+                           <input type="checkbox" id="sa03" value="sa03" name="age3">
+                           <label for="Age3">55 or older</label>
+                       </div>
+                      </div>
+                     <div class="f_title" style="font-family:'Public Sans Bold', sans-serif;font-size: 12px; color:grey; ">Income Group
+                     </div>
+                     <div class="row">
+                         <div class="col-sm-3">
+                           <input type="checkbox" id="se01" value="se01" name="income1">
+                           <label for="income1">$1250/month or less</label>
+                         </div>
+                         <div class="col-sm-3">
+                           <input type="checkbox" id="se02" value="se02" name="income2">
+                           <label for="income2">$1251/month to $3333/month</label>
+                        </div>
+                        <div class="col-sm-3">
+                           <input type="checkbox" id="se03" value="se03" name="income3">
+                           <label for="income3">more than $3333/month</label>
+                        </div>
+                    </div>
+                   <div class="f_title" style="font-family:'Public Sans Bold', sans-serif;font-size: 12px; color:grey;">Industry Sector
+                   </div>
+                   <div class="row">
+                         <div class="col-sm-3">
+                           <input type="checkbox" id="si01" value="si01" name="industry1">
+                           <label for="industry1">Goods Producing</label>
+                         </div>
+                         <div class="col-sm-3">
+                           <input type="checkbox" id="si02" value="si02" name="industry2">
+                           <label for="industry2">Trade, Transportation, Utilities</label>
+                        </div>
+                        <div class="col-sm-3">
+                           <input type="checkbox" id="si03" value="si03" name="industry3">
+                           <label for="industry3">All Other Services</label>
+                        </div>
+                   </div>                   
+                </div> <!-- Modal body ends-->
+                <div class="modal-footer" style="background-color:#333">
+                    <button type="button" class="btn btn-primary" id= "button_filter" style="background-color: transparent;"data-dismiss="modal">Confirm</button>
+                </div> 
+               </div><!-- Modal content ends-->
+              </div> 
+            </div> <!-- modal end section -->
+            
+            <div class="filtertitle">
+                 <div id="demography">Filiter by</div>  
+                 <div class="button_invalid" id="byVar"> </div>
+            </div>
+            
+            </div><!-- filter icon section --> 
+          </div> <!-- filter section ends -->            
+      </div>   <!-- title section ends -->
+      
+      <!-- O-D section -->
+       <div class= "OD-section">
+
+         <!-- O-D section --> 
+         <!--woking -->
+           <div class ="OD_button" id="W_open">
+           <div class ="OD_Working">Number of Employees Working</div>
+           <div class ="title_line"></div> 
+           </div> 
+            <div id="W_panel">
+            <div class="close closeX" id="W_close" style="float:right;">x</div>
+            <div class="Origins">The Origin: Where people work</div>
+            <ul class="g-row" >
+                  <li class="g-column g-1-1-1">
+                      <div class ="W_number" id="W_number"></div>
+                      <div class="notes">Workers</div>
+                  </li>
+                  <li class="g-column g-1-1-2">
+                      <div class ="W_percent" id="W_percent"></div>
+                      <div class="notes">(% totol number of employees)</div>
+                  </li>
+              </ul> 
+            <!-- Sum table modal -->
+            <div clas= "sumtable"> 
+            <div class="barchart_title">Regions' Socio-demographics</div>               
+                <div type="button" class="btn btn-primary" id= "sum_button" data-toggle="modal" data-target="#bd-example-modal-lg">WAC</div>
+                <div class="notes_ac">(Click to see workplace statistics)</div>
+      
+                <!-- Sum modal -->
+                <div class="modal fade bd-example-modal-lg" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                <!-- Modal Content -->
+                <div class="modal-content modalpadding ps ps--active-y" id="TownDetail"> 
+                <!-- Modal header -->
+                <div class="closediv">
+                  <span class="close closeText" data-dismiss="modal">
+                    <span class="ctc">CLOSE</span> <span class="close closeX">×</span>
+                  </span>
+                </div>   
+                 <!-- Modal left -->     
+                <div class="modalLeft">
+                 
+                </div>
+                <!-- Modal Right-->
+                <div class="modalRight"> 
+                  <!-- Table -->
+                  <table id="modalRightTable">
+                  <tbody>
+                  <tr class="Table_header">
+                     <td class="TableHeader" id="soDem">SOCIO DEMOGRAPHIC</td>
+                     <td class="TableHeadCell OpiTableBold CountyCell" id="nameCell" style="display: table-cell;">WORKERS</td>
+                  </tr>
+                  <tr class="bottomBorderTable"></tr>
+                  <tr class="Race_header">
+                     <td class="left-cell TableBold">Race </td>
+                  </tr>
+                  <tr class="Race">
+                     <td class="left-cell Table"> White alone</td>
+                     <td class="cell modalValue" id="cr01" style="color: black;"> </td>
+                  </tr>
+                  <tr class="Race">
+                     <td class="left-cell Table"> Black or African American alone</td>
+                     <td class="cell modalValue" id="cr02" style="color: black;"> </td>
+                  </tr>
+                  <tr class="Race">
+                     <td class="left-cell Table">American Indian</td>
+                     <td class="cell modalValue" id="cr03" style="color: black;"> </td>
+                  </tr>
+                  <tr class="Race">
+                     <td class="left-cell Table">Asian alone</td>
+                     <td class="cell modalValue" id="cr04" style="color: black;"> </td>
+                  </tr>
+                  <tr class="Race">
+                     <td class="left-cell Table">Native Hawaiian </td>
+                     <td class="cell modalValue" id="cr05" style="color: black;"> </td>
+                  </tr>
+                  <tr class="Race">
+                     <td class="left-cell Table">Two or more race groups</td>
+                     <td class="cell modalValue" id="cr07" style="color: black;"> </td>
+                  </tr>
+                  <tr class="bottomBorderTable"></tr>
+                  <tr class="Ethnicity_header">
+                        <td class="left-cell TableBold">Ethnicity </td>
+                     </tr>
+                  <tr class="Ethnicity">
+                     <td class="left-cell Table">Not Hispanic or Latino</td>
+                     <td class="cell modalValue" id="ct01" style="color: black;"></td>
+                  </tr>
+                  <tr class="Ethnicity">
+                     <td class="left-cell Table">Hispanic or Latino</td>
+                     <td class="cell modalValue" id="ct02" style="color: black;"> </td>
+                  </tr>
+                  <tr class="bottomBorderTable"></tr>
+                  <tr class="Education_header">
+                     <td class="left-cell TableBold">Educational Attainment </td>
+                  </tr>
+                  <tr class="Education">
+                     <td class="left-cell Table">Less than high school</td>
+                     <td class="cell modalValue" id="cd01" style="color: black;"> </td>
+                  </tr>
+                  <tr class="Education">
+                     <td class="left-cell Table"> High school </td>
+                     <td class="cell modalValue" id="cd02" style="color: black;"></td>
+                  </tr>
+                  <tr class="Education">
+                     <td class="left-cell Table"> Some college</td>
+                     <td class="cell modalValue" id="cd03" style="color: black;"> </td>
+                  </tr>
+                  <tr class="Education">
+                     <td class="left-cell Table"> Bachelor's degree or advanced</td>
+                     <td class="cell modalValue" id="cd04" style="color: black;"> </td>
+                  </tr>
+                  <tr class="bottomBorderTable"></tr>
+                  <tr class="Gender_header">
+                     <td class="left-cell TableBold">Gender</td>
+                  </tr>
+                  <tr class="Gender">
+                     <td class="left-cell Table"> Male</td>
+                     <td class="cell modalValue" id="cs01" style="color: black;"></td>
+                  </tr>
+                  <tr class="Gender">
+                     <td class="left-cell Table" style="display: table-cell;"> Female</td>
+                    <td class="cell modalValue" id="cs02" style="color: black;"></td>
+                  </tr>         
+                  </tbody>
+                  </table>
+                   <!-- Table ends-->
+                 </div> <!-- Modal Right Ends-->
+                 </div><!-- Modal content ends-->
+                 </div>
+                 </div><!-- modal ends-->
+              </div><!-- sumtable ends-->
+      
+            <div class="barchart_title">Industry Sectors</div>
+            <div id="W_barchart" ></div> 
+            <div class="OD_Ptitle">OD Pairs: Where People Live</div>  
+            <div id="WO_button">Where People Live</div>
+            <div class="notes">(Click to see the workplace distribution)</div>
+          </div>
+       
+          <!--living -->
+          <div class ="OD_button" id="L_open">
+          <div class ="OD_Living">Number of Employees Living</div>
+          <div class ="title_line"></div>
+          </div>
+            <div id="L_panel">
+             <div class="close closeX" id="L_close" style="float:right;">x</div>
+             <div class="Origins">The Origin: Where People Live</div>  
+                <ul class="g-row" >
+                   <li class="g-column g-2-1-1">
+                      <div class ="L_number" id="L_number"></div>
+                      <div class="notes">Workers</div>
+                   </li>
+                   <li class="g-column g-2-1-2">
+                     <div class ="L_percent" id="L_percent"></div>
+                     <div class="notes">(% totol number of employees)</div>
+                   </li> 
+                </ul>
+                <div class="sumtable" >
+                <div class="barchart_title">Regions' Socio-demographics</div>  
+                     <div type="button" class="btn btn-primary" id= "sum_button_rac" data-toggle="modal" data-target="#bd-example-modal-lg">RAC</div>
+                     <div class="notes_ac">(Click to see resident statistics)</div>
+                </div> 
+                <div class="barchart_title">Industry Sectors</div>
+                <div id="L_barchart"></div>
+            <div class="OD_Ptitle">As Destinations: Links With Homeplaces</div>
+            <div class="LO_button" id="LO_button">Where People Work</div> 
+            <div class="notes">(Click to see the homeplace distribution)</div>      
+          </div>
+          <!-- top 10 list section --> 
+      <div class="List-section">
+          <div class="List_title">Top 10 Places </div>
+          <div class="List_sub"> </div>
+          <div class ="title_line"></div>
+          <div id="table"></div>
+      </div> <!-- top 10 list section ends -->
+     
+      <div class="info_button">
+            <a href="about.html" class="about_button">About</a>                    
+      </div>
+         
+      </div><!-- O-D section end --> 
+      </div> <!-- mainpanel section ends --> 
+  </div>   <!-- legend section ends --> 
+  
+  <script src="./boston.js"></script>
+ 
+</body>
+</html>

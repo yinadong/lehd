@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LEHD User Guide</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+.footer {
+    /*position:absolute;*/
+    float: left;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 60px;
+    background-color: #333;
+    color: #9d9d9d;
+    display: table-cell;
+    padding-left: 15px;
+}
+
+span {
+    display: table-cell;
+    margin: 0;
+    color: black;
+    padding: 20px;
+    vertical-align: middle;
+}
+
+.container-fluid {
+    padding: 30px;
+}
+
+.nav navbar-nav{
+    font : 15px 'Public Sans Bold', sans-serif;
+    color: #807C7C;
+    line-height: 15px;
+
+}
+
+</style>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#home">LEHD User Guide</a></div>
+            <ul class="nav navbar-nav">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#getingstarted">Getting Started</a></li>
+                <li><a href="#selectionoptions">Searching Steps</a></li>
+                <li><a href="#maptools">Map Tools</a></li>
+                <li><a href="#filters">Filters</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid" style="margin-top:50px">
+        <div class="jumbotron" style="margin-top:50px">
+            <h1 id="home" class="anchor">LEHD User Guide</h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 id="introduction" class="anchor">Introduction</h1>
+                <p> This tool is an exploratory tool, allowing users to select which town in Massachusetts they want to explore the data. It addresses the following data analytic questions: Where employees worked, and where they lived, and what regions’ demographic characteristics, either as a working area, or living area.</p>
+                <h2>LEHD Data</h2>
+                <p>The Longitudinal Employer-Household Dynamics (LEHD) program is a branch of study for the United States Census Bureau. 
+                   The LEHD program produces simplified but detailed, public-use information combining Federal, State, and Census Bureau data on employers and employees. 
+                   Currently, this tool applies the year 2015 year of LEHD data. More information about that data can be found <a href="https://opmiwiki.mghpcc.org/doku.php?id=webdev:tools:lehdmap&do=">here</a>.</p>
+                <hr>
+                <h1 id="getingstarted" class="anchor">Getting Started</h1>
+                <b>Logging In</b>
+                <p>This tool is currently not available to the public, and requires a login <a href="https://massdot.mghpcc.org/shared/login/signin.php">here</a>.</p>
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-sm-8">
+                <h2>Default Display</h2>
+                <p>When you open the tool it is a centered Massachusetts Chorepleth map. The corresponding toggle button, the "TOWN" button highlighted red, is found on the top right.<p>
+                <p><img class="img-responsive" src="./images/about/display1.png" alt="Display on open" width="100%" ;></p>
+            </div>
+            <div class="col-sm-3">
+                    <h3>The MA Map</h3>
+                    <p><b>Color code :</b>Towns identify as working areas are colored more towards red, and residency areas more towards green. 
+                    The tooltip shows the location's attributes that including the inflow and outflow value of the place.
+                    </p>
+                    <p> 
+                    <b>Inflow:</b> The number of workers worked there.</br>
+                    <b>Outflow:</b> The numner of workers were lived there. </br>
+                    <b>Working area:</b> Inflow value bigger than Outflow value.</br>
+                    <b>Residency area:</b> Inflow value smaller than Outflow value.
+                   </p>
+                    <p><img class="img-responsive" src="./images/about/display1_2.png" alt="Display on open" width="60%" ;></p>
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-sm-8">
+                   <h2>Option Display</h2>
+                   <p>When click the "BG" toggle button at the top right, the Massachusetts Chorepleth map will update from the town view to the geoblock group view.</p>
+                   <p><img class="img-responsive" src="./images/about/display2.png" alt="Display on open" width="100%" ;></p>
+            </div>
+            <div class="col-sm-3">
+                    <h3>The Boston Map</h2>
+                    <p>Boston colored in purple. It shows that Boston as a working area has more people working there than living there.</p>
+                    <h3>The Tree Node Diagram</h2>
+                    <p>It provides another visualization model to visualize these data. It shows the number of employees' distribution with different geographic hierarchies.</p>
+                    <p><img class="img-responsive" src="./images/about/boston_heatmap.png" alt="Display on open" width="100%" ;></p>
+            </div>
+       </div>
+       <hr>
+       <h1 id="selectionoptions" class="anchor">Searching Steps</h1>
+       <div class="row" style="margin-top:10px">
+             <div class="col-sm-8">
+                    <p>The following steps are to call the Origin to Destinations data to show on the map.</P>
+                    <P>One location has two Origin to Destination(O-D) pairs. It could be the origin place of people lived there, also the origin place of people worked there.</br>
+                     1. Where was the Origin place of workers?</br>2. Where were destinations from the origin place? </br>3. Too view the regions’ demographic statistic, either as the origin, or detinations.</p>
+            </div>
+       </div>
+       <div class="row" style="margin-top:10px">
+            <div class="col-sm-6">
+                    <h3><i class="fa fa-search"></i>Search by town name</h3>
+                    <p>Type the town name, and click to seach</p>
+                    <p><img class="img-responsive" src="./images/about/search_town.png" alt="Display on open" width="100%" ;></p>      
+            </div>
+            <div class="col-sm-6">
+                    <h3>Map Interactions </h3>
+                    <p>The map will zoom into your search location, and highlight the outline of the area.</p>
+                    <p><img class="img-responsive" src="./images/about/zoom_into.png" alt="Display on open" width="100%" ;></p>      
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+                <div class="col-sm-4">
+                        <h3>Select on the left panel</h3>
+                        <p>Click each underline decorated title to open each panel. The red colored text indexes which one you have selected.<p>
+                        <p><img class="img-responsive" src="./images/about/panel.png" alt="Display on open" width="100%" ;></p> 
+                </div>
+                <div class="col-sm-4">
+                        <h3>Choosing one O-D pair</h3>
+                        <p>Choosing one Origin to Destination(O-D) pair to look at one time:</p>
+                        <p>For example: Selecting "Number of Employees working" as the origin to show people worked there.</p>
+                        <p><img class="img-responsive" src="./images/about/panel1.png" alt="Display on open" width="90%" ;></p> 
+                </div>
+                <div class="col-sm-4">
+                        <h3>Choosing another O-D pair</h3>
+                        <p>Selecting one O-D relationship at one time to update the map:</p>
+                        <p>For example: Selecting "Number of Employees Living" as the origin to show people lived there.</p>
+                        <p><img class="img-responsive" src="./images/about/panel2.png" alt="Display on open" width="90%" ;></p> 
+                </div>
+        </div>     
+        <h2>The Origin</h2>
+        <div class="row" style="margin-top:10px">
+                <div class="col-sm-6">
+                       <b>Total Summary</b>
+                       <p>Summarizes the mumber of workers at the selected location, and its O-D Pair.</p>
+                       <p><img src="images/about/sum_or.png" width="80%"></p>
+                </div>
+                <div class="col-sm-6">
+                        <b>The Industry Sectors Summary</b>
+                        <p>Hover over the bar to see the value of each industry sector.</br>This bar chart includes 20 sectors.</p>
+                        <p><img src="images/about/rac_barchart.png" width="80%"></p>
+                </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+                <div class="col-sm-8">
+                        <b>The Origin Place Statistic</b>
+                        <p>Click the "WAC" or "RAC" button in each panel, to see the origin place statistic table.</p>
+                        <p><img src="images/about/sum_table.png" width="100%"></p>
+                </div>
+                <div class="col-sm-3">
+                        <b>About the WAC/RAC data</b>
+                        <p>Different demographic slices for the total from WAC data. c000 should be equal to s000 in work_od; both of these are the total number of workers who work in this location. 
+                        The others are different ways of slicing the data. See the 
+                        <a class="wikilink1" href="/doku.php?id=dataz:sources:raw_data_sources:census" title="dataz:sources:raw_data_sources:census">LODES documentation</a> for explanation.</p>
+                        <p><img src="images/about/wac.png" width="80%"> </p>
+                        <p><img src="images/about/rac.png" width="70%"> </p>
+                </div>
+        </div>
+        <h2>Many Destinations</h2>
+        <div class="row" style="margin-top:10px">
+            <div class="col-sm-8">
+                      <b>From the Origin to Destinations Map</b>
+                      <p>Click the button "Where people Live" and "Where people Work" to see destinations distribution from the origin.</p>
+                      <p><img src="images/about/destination1.png" width="36%">  <img src="images/about/destination2.png" width="36%"></p>
+                      <p>To avoid flow path clustering and overlapping each other, this map doesn't show links from the origin to destinations. It applied a chorepleth map method to visualize O-D flows. And highlighted the outline of origin places in the map to identify as the origin of flows.
+                      The saturation of the color change indexes the number of workers.</p>            
+                      <p><img src="images/about/0-D.png" width="100%"> </p>
+            </div>
+            <div class="col-sm-3">
+                     <b>Top 10 places List</b>
+                     <p>List the most concentration place based on the filtered map.</p>
+                     <p>The table will update as the map updates, to see destination information.</p>
+                     <p><img src="images/about/top10.png" width="100%"></p>
+            </div>
+        </div>
+        <hr>
+        <h1 id="maptools" class="anchor">Map Tools</h1> 
+        <p>The icons on the bottom right side of the screen are for changing the map view.</p>    
+        <div class="row" style="margin-top:10px">  
+                 <div class="container">
+                     <div class="row">
+                             <div class="col-sm-1"><span><img src="images/about/maptol1.png" width="85%"></span></div>
+                             <div class="col-sm-11"><span>Returns map to center view of Massachusetts/Boston Map</span></div>
+                     </div>
+                     <div class="row">
+                        <div class="col-sm-1"><span><img src="images/about/maptol2.png" width="85%"></span></div>
+                        <div class="col-sm-11"><span>Standard zoom functions</span></div>
+                     </div>
+                     <div class="row">
+                             <div class="col-sm-1"><span><img src="images/about/maptol3.png" width="85%"></span>
+                             </div>
+                             <div class="col-sm-11"><span>Optional map layers: transit routes and stops </br>The choropleth map shows the infrastructure layer with trainst routes and stops.</span>
+                             </div>                         
+                             <div class="col-sm-8"><span><img src="images/about/maptol3.3.png" width="85%"></span>
+                             </div>
+                     </div>
+                </div>
+
+        </div>
+        <hr> 
+       <h1 id="filters" class="anchor">Filter the Map </h1>
+       <div class="row" style="margin-top:10px">
+
+            <div class="col-sm-6">
+                     <h4>Filter the map resulte</h4>
+                     <p>In the top left side of the panel, click the filter icon to open the filter sections</p>
+                     <p><img src="images/about/filter_button.png" width="20%"></p>
+            </div>
+            <div class="col-sm-6">
+                    <h4>Select a variable</h4>
+                    <p>Select a variable, click confirm to call the update pattern to the map</p>
+                    <p>The top 10 list table will also update by filter choice</p>
+                    <p><img src="images/about/filter_varibale.png" width="100%"></p>
+          </div>
+        </div>
+</div>
+<br>
+<footer class="footer">LEHD Tool User Guide</footer>
+</body>
+</html>
